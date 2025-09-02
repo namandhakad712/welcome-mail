@@ -1,6 +1,11 @@
 import nodemailer from 'nodemailer';
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default async ({ req, res, log, error }) => {
     try {
@@ -39,9 +44,18 @@ export default async ({ req, res, log, error }) => {
             throw new Error('Email is required');
         }
 
-        // Read email template
-        const templatePath = path.join(process.cwd(), 'src', 'email.html');
-        let template = await fs.readFile(templatePath, 'utf8');
+        // Read email template using the directory of the current script
+        const templatePath = path.join(__dirname, 'email.html');
+        log(`Attempting to read template from: ${templatePath}`);
+        
+        let template;
+        try {
+            template = await fs.readFile(templatePath, 'utf8');
+            log('Template file read successfully');
+        } catch (fileError) {
+            error(`Failed to read template file: ${fileError.message}`);
+            throw new Error(`Template file not found at ${templatePath}`);
+        }
 
         // Generate welcome URL (with fallback if $id is not available)
         const welcomeUrl = $id ? `https://felearn.com/welcome/${$id}` : 'https://felearn.com/get-started';
