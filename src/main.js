@@ -62,6 +62,10 @@ export default async ({ req, res, log, error }) => {
         
         const bgImageBuffer = await fs.readFile(bgImagePath);
         const logoBuffer = await fs.readFile(logoPath);
+        
+        // Log image sizes for debugging
+        log(`Background image size: ${bgImageBuffer.length} bytes`);
+        log(`Logo image size: ${logoBuffer.length} bytes`);
 
         // Create email transporter
         const transporter = nodemailer.createTransport({
@@ -86,13 +90,15 @@ export default async ({ req, res, log, error }) => {
                     filename: 'bg.jpg',
                     content: bgImageBuffer,
                     cid: 'bg-image',
-                    encoding: 'base64'
+                    encoding: 'base64',
+                    contentType: 'image/jpeg'
                 },
                 {
                     filename: 'felearn-logo.png',
                     content: logoBuffer,
                     cid: 'logo-image',
-                    encoding: 'base64'
+                    encoding: 'base64',
+                    contentType: 'image/png'
                 }
             ]
         });
