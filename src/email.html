@@ -17,7 +17,8 @@
             min-height: 100vh;
             padding: 20px;
             margin: 0;
-            overflow-x: hidden;
+            /* Fallback background gradient */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
         /* Background container with rotated image */
@@ -29,6 +30,8 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            /* Fallback background */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
         .background-image {
@@ -41,6 +44,8 @@
             height: auto;
             transform: translate(-50%, -50%) rotate(90deg);
             object-fit: cover;
+            /* Fallback for when image doesn't load */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
         .container {
@@ -220,7 +225,8 @@
 <body>
     <!-- Background image rotated 90 degrees -->
     <div class="background-container">
-        <img src="cid:bg-image" class="background-image" alt="Background">
+        <img src="cid:bg-image" class="background-image" alt="Background" 
+             onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';">
     </div>
     
     <div class="container">
@@ -233,7 +239,7 @@
                 <p>We're thrilled to have you join our learning community! Get ready to experience education like never before.</p>
                 
                 <div class="cat-quote">
-                    "Learning doesn't have to be boring when cats explain it!" - Professor Whiskers
+                    "Learning doesn't have to be boring when cats explain it!" - Professor Purrfect
                 </div>
                 
                 <div class="feature-list">
@@ -265,7 +271,7 @@
                     <img src="cid:logo-image" alt="Felearn AI Logo">
                 </div>
                 <p>Support: <a href="mailto:felearn@zohomail.in">felearn@zohomail.in</a></p>
-                <p>© 2025 Felearn AI. A new era of learning by AI imagination</p>
+                <p>© 2025 Felearn AI. A new era of learning by AI imagination.</p>
             </div>
         </div>
     </div>
