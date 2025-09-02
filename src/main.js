@@ -4,6 +4,11 @@ import path from 'path';
 
 export default async ({ req, res, log, error }) => {
     try {
+        // Ignore favicon requests
+        if (req.path === '/favicon.ico') {
+            return res.send('', 204); // No Content response
+        }
+
         // Get user data from either event payload or HTTP request
         let userData;
         
@@ -23,6 +28,14 @@ export default async ({ req, res, log, error }) => {
 
         // Validate required fields
         if (!email) {
+            // For HTTP requests without parameters, return a helpful message
+            if (!req.payload) {
+                return res.json({
+                    success: false,
+                    error: 'Missing required parameters. Please provide email and name parameters.',
+                    example: 'https://your-function-url/?email=test@example.com&name=TestUser'
+                }, 400);
+            }
             throw new Error('Email is required');
         }
 
