@@ -19,6 +19,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            background-rotation: 90deg;
             min-height: 100vh;
             padding: 20px;
         }
@@ -35,34 +36,12 @@
             -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 
-                0 8px 32px 0 rgba(31, 38, 135, 0.37),
-                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
             overflow: hidden;
             position: relative;
-        }
-        
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.1) 50%,
-                transparent 70%
-            );
-            background-size: 200% 200%;
-            animation: shimmer 3s infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -200% -200%; }
-            100% { background-position: 200% 200%; }
+            /* Adding grain effect */
+            background-image: 
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1Ii8+PC9zdmc+');
         }
         
         .header {
@@ -273,7 +252,7 @@
                 <div class="footer-logo">
                     <img src="cid:logo-image" alt="Felearn AI Logo">
                 </div>
-                <p>Need help? <a href="mailto:support@felearn.vercel.app">Reply to this email</a> or contact support@felearn.vercel.app</p>
+                <p>Support: <a href="mailto:felearn@zohomail.in">felearn@zohomail.in</a></p>
                 <p>© 2025 Felearn AI. Where learning meets storytelling.</p>
             </div>
         </div>
